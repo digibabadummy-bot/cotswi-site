@@ -107,7 +107,7 @@
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
     const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // ⚠️ replace with your Supabase anon key
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; 
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     document.getElementById("contact-form").addEventListener("submit", async function (e) {
@@ -133,7 +133,7 @@
       // 2. Call Supabase Edge Function to send email
       try {
         const response = await fetch(
-          "https://pnywwscdvkcysjyudlhp.supabase.co/functions/v1/send-email",
+          "https://pnywwscdvkcysjyudlhp.supabase.co/functions/v1/smart-handler", 
           {
             method: "POST",
             headers: {

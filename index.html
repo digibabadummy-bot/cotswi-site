@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>COTSWI Technologies — Wiring Harness & EMS</title>
+  <meta name="description" content="Emerging EMS partner for wiring harness, PCB assembly and mechanical assembly." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{ --brand:#0b4e76; --accent:#f59e0b; --muted:#6b7280; }
+    *{box-sizing:border-box}
+    body{ font-family:Inter, Arial, sans-serif; margin:0; color:#162029; background:#f7fafc;}
+    .nav{background:#fff; box-shadow:0 4px 12px rgba(12,24,36,0.06); position:sticky; top:0; z-index:30;}
+    .nav .inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;}
+    .brand{display:flex;align-items:center;gap:12px;}
+    .brand img{height:48px;}
+    .nav a{color:#263238;text-decoration:none;margin-left:18px;font-weight:600;}
+    .hero{background:linear-gradient(rgba(6,30,45,0.45),rgba(6,30,45,0.45)), url('assets/hero_placeholder.jpg');background-size:cover;background-position:center;padding:80px 18px;color:#fff;text-align:center;}
+    .hero h1{font-size:36px;margin:0 0 12px;}
+    .hero p{margin:0 auto 18px; max-width:800px;}
+    .btn{background:var(--brand);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;}
+    .container{max-width:1100px;margin:36px auto;padding:0 18px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#fff;padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(10,10,10,0.04);}
+    h2{margin-top:0;}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+    footer{background:#0b4e76;padding:30px 18px;margin-top:30px;color:#fff;}
+    footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px;max-width:1100px;margin:0 auto;}
+    footer a{color:#fff;text-decoration:none;}
+    form label{display:block;margin:10px 0 6px;font-weight:600;}
+    input[type=text], input[type=email], textarea{width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:6px;}
+    @media(max-width:900px){ .grid-3{grid-template-columns:1fr}; .two-col{grid-template-columns:1fr} .nav a{display:none} footer .cols{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="inner">
+      <div class="brand">
+        <img src="assets/logo.png" alt="COTSWI logo" />
+        <div>
+          <div style="font-weight:700;color:var(--brand);">COTSWI Technologies</div>
+          <div style="font-size:12px;color:var(--muted)">EMS - Wiring Harness | PCB Assembly | Mechanical</div>
+        </div>
+      </div>
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#vision">Vision & Mission</a>
+        <a href="#services">Services</a>
+        <a href="#industries">Industries</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <h1>Emerging EMS partner for Wiring Harness & PCB Assembly</h1>
+    <p>Bootstrapped, women-managed EMS company from Greater Coimbatore area. We deliver cost-effective wiring harnesses and assemblies with end-to-end traceability and faster timelines — typically less than 50% of the general industry time.</p>
+    <a class="btn" href="#contact">Request a Quote</a>
+  </section>
+
+  <div class="container">
+    <section id="about" class="card">
+      <h2>About COTSWI Technologies</h2>
+      <p>We are a bootstrapped, women-managed EMS company backed by industry experts. Our focus is to deliver value to customers — not to maximise short-term profits. We prioritise quality, transparency and timely delivery. Our manufacturing and R&D are based in the Greater Coimbatore area, and we serve the Indian market with the following capabilities.</p>
+      <div class="two-col" style="margin-top:12px;">
+        <div>
+          <h3>How We Work</h3>
+          <ul>
+            <li>Approved parts and assemblies</li>
+            <li>100% quality inspection</li>
+            <li>Shorter manufacturing lead time (typically &lt;50% of peers)</li>
+            <li>Certified in-house testing</li>
+            <li>End-to-end parts traceability</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Core Strengths</h3>
+          <ul>
+            <li>Automated wire cut-strip-crimp</li>
+            <li>Heavy crimping & precision soldering</li>
+            <li>Over-moulding, box build and mechanical assembly</li>
+            <li>Jigs & fixtures, tooling support</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="vision" style="margin-top:18px;">
+      <div class="card">
+        <h2>Vision & Mission</h2>
+        <p><strong>Vision</strong>: To be India’s most trusted EMS partner by delivering cost-effective wiring harnesses and assemblies with uncompromised quality.</p>
+        <p><strong>Mission</strong>: Empower industries with reliable EMS solutions built on innovation, transparency, and social responsibility. We operate ethically — we are not greedy for profit; we focus on long-term partnerships.</p>
+      </div>
+    </section>
+
+    <section id="services" style="margin-top:18px;">
+      <h2>Services & Capabilities</h2>
+      <div class="grid-3" style="margin-top:10px;">
+        <div class="card"><h3>Wiring Harness</h3><p>Design & manufacture of harness assemblies for automotive and industrial applications. (Automated cut-strip-crimp, harness testing)</p></div>
+        <div class="card"><h3>PCB Assembly</h3><p>Precision soldering & SMT/THT assembly for consumer and industrial electronics.</p></div>
+        <div class="card"><h3>Mechanical Assembly</h3><p>Box build, jigs & fixtures, cable management and sub-assembly integration.</p></div>
+      </div>
+    </section>
+
+    <section id="industries" style="margin-top:18px;">
+      <div class="card">
+        <h2>Industries Served</h2>
+        <div class="grid-3" style="margin-top:10px;">
+          <div class="card"><h4>Automotive</h4><p>Two-wheelers, three-wheelers and light vehicles.</p></div>
+          <div class="card"><h4>Industrial</h4><p>Machine harnesses, control panels and industrial equipment.</p></div>
+          <div class="card"><h4>Consumer Electronics</h4><p>Appliances, white goods and small electronics assemblies.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:18px;">
+      <div class="card">
+        <h2>Contact / Request a Quote</h2>
+        <form id="contactForm" style="margin-top:8px;">
+          <label for="name">Name</label>
+          <input id="name" type="text" required />
+          <label for="company">Company</label>
+          <input id="company" type="text" />
+          <label for="email">Email</label>
+          <input id="email" type="email" required />
+          <label for="phone">Phone</label>
+          <input id="phone" type="text" />
+          <label for="requirement">Requirement / Message</label>
+          <textarea id="requirement" rows="5" required></textarea>
+          <div style="margin-top:12px;">
+            <button type="submit" class="btn">Submit Requirement</button>
+          </div>
+          <p id="status" style="margin-top:10px;color:green;display:none;">Thanks — your requirement has been sent.</p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="cols">
+      <div>
+        <img src="assets/logo.png" style="height:50px" alt="logo" />
+        <p style="margin-top:8px;">COTSWI Technologies — Emerging EMS partner for Wiring Harness, PCB Assembly & Mechanical Assembly.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <p><a href="#about">About Us</a></p>
+        <p><a href="#services">Services</a></p>
+        <p><a href="#industries">Industries</a></p>
+        <p><a href="#contact">Contact</a></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email: info@cotswi.com</p>
+        <p>Phone: +91 93848 15321</p>
+        <p>Location: Coimbatore, India</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:20px;">© COTSWI — All rights reserved</p>
+  </footer>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const SUPABASE_URL = 'https://pnywwscdvkcysjyudlhp.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A';
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const requirement = document.getElementById('requirement').value.trim();
+
+      const { data, error } = await supabase
+        .from('enquiries')
+        .insert([{ name, company, email, phone, requirement }]);
+
+      if (error) {
+        alert('Error saving your request. Try again or email info@cotswi.com');
+        console.error(error);
+        return;
+      }
+
+      statusEl.style.display = 'block';
+      form.reset();
+      setTimeout(()=> statusEl.style.display = 'none', 6000);
+    });
+  </script>
+</body>
+</html>

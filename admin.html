@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>COTSWI Admin - Enquiries</title>
+  <style>
+    body{ font-family:Inter, Arial, sans-serif; padding:18px; background:#f6f8fb;}
+    .box{ max-width:1100px; margin:12px auto; background:#fff; padding:18px; border-radius:8px; box-shadow:0 8px 20px rgba(20,20,30,0.06);}
+    input{ padding:10px; margin:6px 0; width:100%; box-sizing:border-box;}
+    button{ padding:10px 12px; background:#0b4e76; color:#fff; border:0; border-radius:6px; cursor:pointer; }
+    table{ width:100%; border-collapse: collapse; margin-top:12px; }
+    th, td{ border:1px solid #eee; padding:8px; font-size:14px; text-align:left; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Admin — Sign in to view enquiries</h2>
+    <div id="authArea">
+      <input id="adminEmail" placeholder="admin email" />
+      <input id="adminPass" placeholder="password" type="password"/>
+      <div style="margin-top:8px;">
+        <button id="signInBtn">Sign In</button>
+      </div>
+      <p id="authMsg" style="color:crimson;"></p>
+    </div>
+
+    <div id="dataArea" style="display:none;">
+      <button id="signOutBtn" style="float:right">Sign out</button>
+      <h3>Enquiries</h3>
+      <div id="tableWrap">Loading...</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const SUPABASE_URL = 'https://pnywwscdvkcysjyudlhp.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A';
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    (async function() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        showDataArea();
+        fetchEnquiries();
+      }
+    })();
+
+    signInBtn.addEventListener('click', async () => {
+      authMsg.textContent = '';
+      const email = adminEmail.value.trim();
+      const password = adminPass.value;
+
+      if (!email || !password) { authMsg.textContent = 'Enter email and password'; return; }
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) { authMsg.textContent = error.message; return; }
+      showDataArea();
+      fetchEnquiries();
+    });
+
+    signOutBtn.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      dataArea.style.display = 'none';
+      authArea.style.display = 'block';
+    });
+
+    async function showDataArea(){
+      authArea.style.display = 'none';
+      dataArea.style.display = 'block';
+    }
+
+    async function fetchEnquiries(){
+      tableWrap.innerHTML = 'Loading...';
+      const { data, error } = await supabase
+        .from('enquiries')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        tableWrap.innerHTML = 'Error loading enquiries: ' + error.message;
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        tableWrap.innerHTML = '<em>No enquiries yet</em>';
+        return;
+      }
+
+      let html = '<table><thead><tr><th>ID</th><th>Name</th><th>Company</th><th>Email</th><th>Phone</th><th>Requirement</th><th>When</th><th>Action</th></tr></thead><tbody>';
+      data.forEach(r=>{
+        html += `<tr>
+          <td>${r.id}</td>
+          <td>${escapeHtml(r.name||'')}</td>
+          <td>${escapeHtml(r.company||'')}</td>
+          <td>${escapeHtml(r.email||'')}</td>
+          <td>${escapeHtml(r.phone||'')}</td>
+          <td>${escapeHtml(r.requirement||'')}</td>
+          <td>${new Date(r.created_at).toLocaleString()}</td>
+          <td><button data-id="${r.id}" class="delBtn">Delete</button></td>
+        </tr>`;
+      });
+      html += '</tbody></table>';
+      tableWrap.innerHTML = html;
+
+      document.querySelectorAll('.delBtn').forEach(btn=>{
+        btn.addEventListener('click', async (e)=>{
+          if (!confirm('Delete this enquiry?')) return;
+          const id = e.target.dataset.id;
+          const { error } = await supabase.from('enquiries').delete().eq('id', id);
+          if (error) alert('Delete failed: ' + error.message);
+          else fetchEnquiries();
+        });
+      });
+    }
+
+    function escapeHtml(text) {
+      return (text + '').replace(/[&<>"'\/]/g, function(s) {
+        return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#x2F;'}[s]);
+      });
+    }
+  </script>
+</body>
+</html>

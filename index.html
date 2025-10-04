@@ -1,321 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>COTSWI Technologies</title>
-
-  <!-- Font & CSS -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-  <link rel="icon" href="assets/logo.png" />
-  
-  <style>
-    /* === Global Styles === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body {
-      background-color: #f9fafc;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    h1, h2, h3 {
-      color: #0b5394;
-    }
-
-    a {
-      text-decoration: none;
-      color: #0b5394;
-      font-weight: 500;
-    }
-
-    a:hover {
-      color: #2b78e4;
-    }
-
-    section {
-      padding: 60px 15%;
-    }
-
-    /* === Navbar === */
-    header {
-      background: white;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 10%;
-    }
-
-    nav img {
-      height: 50px;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 30px;
-    }
-
-    nav a {
-      color: #333;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #0b5394;
-    }
-
-    /* === Hero Section === */
-    .hero {
-      background: linear-gradient(to right, #0b5394, #2b78e4);
-      color: white;
-      text-align: center;
-      padding: 120px 10%;
-      background-image: url("assets/bg.jpg");
-      background-size: cover;
-      background-position: center;
-      background-blend-mode: overlay;
-    }
-
-    .hero h1 {
-      font-size: 2.4rem;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      max-width: 700px;
-      margin: 0 auto 30px;
-      font-size: 1.1rem;
-    }
-
-    .btn {
-      background: white;
-      color: #0b5394;
-      padding: 12px 28px;
-      border-radius: 25px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #f1f1f1;
-    }
-
-    /* === About / Vision === */
-    #about, #vision {
-      background: #fff;
-      margin: 40px 0;
-      border-radius: 12px;
-      padding: 50px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    #about p, #vision p {
-      font-size: 1.05rem;
-      color: #555;
-    }
-
-    /* === Services === */
-    #services {
-      background: #f1f5f9;
-      text-align: center;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .service {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      transition: 0.3s;
-    }
-
-    .service:hover {
-      transform: translateY(-5px);
-    }
-
-    .service img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-    /* === Industries === */
-    #industries ul {
-      list-style: disc;
-      padding-left: 20px;
-      font-size: 1.05rem;
-    }
-
-    /* === Contact === */
-    #contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    input, textarea {
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    button {
-      background: #0b5394;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #2b78e4;
-    }
-
-    /* === Footer === */
-    footer {
-      background: #0b5394;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-    }
-
-    /* === Responsive === */
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        background: white;
-        position: absolute;
-        top: 70px;
-        right: 10%;
-        padding: 15px;
-        display: none;
-      }
-      section {
-        padding: 40px 8%;
-      }
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COTSWI Technologies</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="COTSWI Technologies — EMS partner for wiring harness & PCB assembly. Bootstrapped, women-managed, Coimbatore.">
 </head>
 <body>
-  <header>
-    <nav>
-      <img src="assets/logo.png" alt="COTSWI Technologies Logo" />
-      <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#vision">Vision & Mission</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#industries">Industries</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <h1>Emerging EMS Partner for Wiring Harness & PCB Assembly</h1>
-    <p>A bootstrapped, women-managed EMS company delivering end-to-end wiring harness and assembly solutions with faster timelines and uncompromised quality.</p>
-    <a href="#contact" class="btn">Request a Quote</a>
-  </section>
-
-  <section id="about">
-    <h2>About COTSWI Technologies</h2>
-    <p>We are a women-managed, bootstrapped EMS company based in Coimbatore, India — backed by industry experts and focused on delivering transparent, high-quality, and time-efficient manufacturing services.</p>
-  </section>
-
-  <section id="vision">
-    <h2>Vision & Mission</h2>
-    <p><strong>Vision:</strong> To expand our market presence by offering innovative, cost-effective wiring harness and assembly solutions.<br>
-    <strong>Mission:</strong> Empowering talented teams to deliver world-class EMS solutions rooted in integrity, innovation, and reliability.</p>
-  </section>
-
-  <section id="services">
-    <h2>Services & Capabilities</h2>
-    <div class="service-grid">
-      <div class="service">
-        <img src="assets/service1.jpg" alt="Wiring Harness" />
-        <h3>Wiring Harness</h3>
-        <p>Customised harness solutions for automotive, industrial, and consumer electronics.</p>
-      </div>
-      <div class="service">
-        <img src="assets/service2.jpg" alt="PCB Assembly" />
-        <h3>PCB Assembly</h3>
-        <p>Precision SMT/THT and assembly services ensuring quality and traceability.</p>
-      </div>
-      <div class="service">
-        <img src="assets/service3.jpg" alt="Mechanical Assembly" />
-        <h3>Mechanical Assembly</h3>
-        <p>Complete box builds, fixture assemblies, and integration with quality assurance.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="industries">
-    <h2>Industries Served</h2>
-    <ul>
-      <li>Automotive</li>
-      <li>Industrial</li>
-      <li>Consumer Electronics</li>
+<header class="site-header">
+  <nav class="nav">
+    <div class="brand"><img src="assets/logo.png" alt="COTSWI Logo" height="48"></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-  </section>
+  </nav>
+</header>
 
-  <section id="contact">
-    <h2>Contact / Request a Quote</h2>
-    <form id="contact-form">
-      <input type="text" id="name" placeholder="Your Name" required />
-      <input type="text" id="company" placeholder="Your Company" />
-      <input type="email" id="email" placeholder="Your Email" required />
-      <input type="text" id="phone" placeholder="Your Phone" />
-      <textarea id="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Precision in Every Connection</h1>
+    <p class="tag">Empowering innovation through reliable EMS solutions — wiring harnesses, PCB assembly and box builds.</p>
+    <a class="btn" href="#contact">Request a Quote</a>
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; 2025 COTSWI Technologies | sales@cotswi.com</p>
-  </footer>
+<main>
+<section id="about" class="card">
+  <h2>About COTSWI Technologies</h2>
+  <p>COTSWI Technologies is a women-managed, bootstrapped EMS startup from Coimbatore, specialising in reliable and traceable wiring harness and PCB assemblies. We focus on innovation, quality, and faster delivery timelines — helping customers turn ideas into production-ready solutions.</p>
+</section>
 
-  <!-- Supabase Script (unchanged) -->
-  <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-    const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; 
-    const supabase = createClient(supabaseUrl, supabaseKey);
+<section id="vision" class="card">
+  <h2>Vision &amp; Mission</h2>
+  <p><strong>Vision:</strong> Expand market presence by offering innovative, cost-effective wiring harness and assembly solutions.<br>
+  <strong>Mission:</strong> Empower talented teams to deliver world-class EMS solutions rooted in integrity, innovation, and reliability.</p>
+</section>
 
-    document.getElementById("contact-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(e.target).entries());
-      const { error } = await supabase.from("contacts").insert([data]);
-      alert(error ? "Error: " + error.message : "✅ Message sent successfully!");
-      e.target.reset();
-    });
-  </script>
+<section id="why" class="card features">
+  <h2>Why Choose Us</h2>
+  <div class="grid-3">
+    <div class="feature"><strong>Rapid turnaround</strong><p>Startup agility for fast prototyping to production.</p></div>
+    <div class="feature"><strong>In-house testing</strong><p>Prototype validation and integration testing.</p></div>
+    <div class="feature"><strong>Traceability</strong><p>Documented processes for component-level traceability.</p></div>
+    <div class="feature"><strong>Transparent communication</strong><p>Clear timelines and regular updates.</p></div>
+    <div class="feature"><strong>Flexible engagement</strong><p>From small batches to larger runs — we adapt to your needs.</p></div>
+  </div>
+</section>
+
+<section id="services" class="card">
+  <h2>Services &amp; Capabilities</h2>
+  <div class="service-grid">
+    <article class="service">
+      <img src="assets/service1.jpg" alt="Wiring harness">
+      <h3>Wiring Harness</h3>
+      <p>Customised harness solutions for automotive, industrial, and consumer products.</p>
+    </article>
+    <article class="service">
+      <img src="assets/service2.jpg" alt="PCB assembly">
+      <h3>PCB Assembly</h3>
+      <p>SMT &amp; THT assembly with optical inspection and supply chain support.</p>
+    </article>
+    <article class="service">
+      <img src="assets/service3.jpg" alt="Mechanical assembly">
+      <h3>Mechanical Assembly</h3>
+      <p>Box builds, jig fixtures, cable integration and quality checks.</p>
+    </article>
+  </div>
+</section>
+
+<section id="industries" class="card">
+  <h2>Industries Served</h2>
+  <ul class="industry-list">
+    <li>Automotive</li>
+    <li>Industrial Automation</li>
+    <li>Consumer Electronics</li>
+    <li>Renewable Energy</li>
+    <li>IoT / Smart Devices</li>
+  </ul>
+</section>
+
+<section id="contact" class="card contact">
+  <h2>Contact / Request a Quote</h2>
+  <form id="contact-form">
+    <input name="name" id="name" placeholder="Your Name" required>
+    <input name="company" id="company" placeholder="Company (optional)">
+    <input name="email" id="email" type="email" placeholder="Email" required>
+    <input name="phone" id="phone" placeholder="Phone">
+    <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+    <button type="submit" id="submit-btn">Send Message</button>
+    <p id="form-status" class="muted"></p>
+  </form>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</p>
+    <p>sales@cotswi.com</p>
+  </div>
+</footer>
+
+<script type="module">
+// Supabase integration - update with your values
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const SUPABASE_URL = "https://pnywwscdvkcysjyudlhp.supabase.co"; // replace if different
+const SUPABASE_KEY = "REPLACE_WITH_ANON_KEY"; // <--- paste anon public key here
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+document.getElementById("contact-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const company = document.getElementById("company").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const message = document.getElementById("message").value.trim();
+  document.getElementById("form-status").textContent = "Submitting...";
+
+  // Basic client-side validation
+  if (!name || !email || !message) {
+    alert("Please fill required fields.");
+    document.getElementById("form-status").textContent = "";
+    return;
+  }
+
+  try {
+    const { error } = await supabase.from("contacts").insert([{ name, company, email, phone, message }]);
+    if (error) throw error;
+    document.getElementById("form-status").textContent = "Thanks — your message was sent.";
+    e.target.reset();
+  } catch (err) {
+    console.error(err);
+    document.getElementById("form-status").textContent = "Failed to send. Check console.";
+    alert("Error: " + (err.message || err));
+  }
+});
+</script>
+
 </body>
 </html>

@@ -24,8 +24,8 @@
 
     body {
       color: var(--text);
-      background: #fff;
       line-height: 1.6;
+      background-color: white;
     }
 
     /* === Navbar === */
@@ -77,6 +77,7 @@
     .hero h1 {
       font-size: 2.8rem;
       margin-bottom: 20px;
+      font-weight: 700;
     }
 
     .hero p {
@@ -93,7 +94,7 @@
       border-radius: 25px;
       font-weight: 600;
       transition: 0.3s;
-      display: inline-block;
+      text-decoration: none;
     }
 
     .btn:hover {
@@ -124,34 +125,69 @@
       font-size: 1.05rem;
     }
 
-    /* === Contact Form === */
-    #contact {
-      background: var(--bg-light);
+    /* === Services === */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
     }
 
+    .service {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .service:hover {
+      transform: translateY(-6px);
+    }
+
+    .service img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    /* === Industry List === */
+    ul.industry {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    ul.industry li {
+      background: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    /* === Contact Form === */
     form {
       display: flex;
       flex-direction: column;
       gap: 15px;
       max-width: 500px;
       margin: 30px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
     }
 
     input, textarea {
       padding: 12px;
       border-radius: 6px;
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       font-size: 1rem;
       width: 100%;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 100px;
     }
 
     button {
@@ -169,33 +205,40 @@
       background: var(--accent);
     }
 
-    #status {
-      text-align: center;
-      margin-top: 8px;
-      font-size: 0.95rem;
-    }
-
     /* === Footer === */
     footer {
       background: var(--navy);
       color: white;
+      padding: 30px 8%;
       text-align: center;
-      padding: 25px 8%;
     }
 
-    footer p {
-      margin: 5px 0;
-      font-size: 0.9rem;
+    footer a {
+      color: #ffcb05;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2rem; }
-      section { padding: 50px 6%; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+      section { padding: 60px 6%; }
+      footer { padding: 25px 5%; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 80px 5%; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero p { font-size: 0.9rem; }
+      .service img { height: 130px; }
     }
   </style>
 </head>
-
 <body>
+
   <header>
     <nav>
       <img src="assets/logo.png" alt="COTSWI Logo" />
@@ -209,14 +252,55 @@
     </nav>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <h1>Precision in Every Connection</h1>
     <p>Empowering innovation through reliable EMS solutions — wiring harness, PCB assembly, and mechanical integration.</p>
     <a href="#contact" class="btn">Request a Quote</a>
   </section>
 
-  <!-- Contact Section -->
+  <section id="about">
+    <h2>About COTSWI Technologies</h2>
+    <p>COTSWI Technologies is a women-managed, bootstrapped EMS startup from Coimbatore. We deliver end-to-end manufacturing services with high traceability, quality assurance, and quick turnaround times. Our focus is on innovation and partnership to bring cost-effective, high-quality solutions to life.</p>
+  </section>
+
+  <section id="vision">
+    <h2>Vision & Mission</h2>
+    <p><strong>Vision:</strong> To become a preferred EMS partner in India through technology-driven, reliable, and sustainable manufacturing.<br><br>
+    <strong>Mission:</strong> To empower Indian innovation with high-quality wiring harness, PCB, and assembly solutions through dedicated expertise and transparent collaboration.</p>
+  </section>
+
+  <section id="services">
+    <h2>Services & Capabilities</h2>
+    <div class="service-grid">
+      <div class="service">
+        <img src="assets/service1.jpg" alt="Wiring Harness" />
+        <h3>Wiring Harness</h3>
+        <p>Customised harness solutions for automotive, industrial, and consumer applications with full traceability.</p>
+      </div>
+      <div class="service">
+        <img src="assets/service2.jpg" alt="PCB Assembly" />
+        <h3>PCB Assembly</h3>
+        <p>SMT & THT PCB assembly with quality testing, component sourcing, and documentation support.</p>
+      </div>
+      <div class="service">
+        <img src="assets/service3.jpg" alt="Mechanical Assembly" />
+        <h3>Mechanical Assembly</h3>
+        <p>Box builds, jigs, fixtures, cable integration, and reliability testing for complete EMS solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="industries">
+    <h2>Industries Served</h2>
+    <ul class="industry">
+      <li>Automotive</li>
+      <li>Industrial Automation</li>
+      <li>Consumer Electronics</li>
+      <li>Renewable Energy</li>
+      <li>Smart Devices (IoT)</li>
+    </ul>
+  </section>
+
   <section id="contact">
     <h2>Contact / Request a Quote</h2>
     <form id="contact-form">
@@ -225,67 +309,41 @@
       <input type="email" id="email" placeholder="Your Email" required />
       <input type="text" id="phone" placeholder="Your Phone" />
       <textarea id="message" placeholder="Your Message" required></textarea>
-      <button type="submit" id="submit-btn">Send Message</button>
-      <p id="status"></p>
+      <button type="submit">Send Message</button>
     </form>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</p>
-    <p>sales@cotswi.com</p>
+    <p><a href="mailto:sales@cotswi.com">sales@cotswi.com</a></p>
   </footer>
 
-  <!-- Supabase Integration -->
+  <!-- Supabase Script -->
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    // 🟦 Replace with your actual Supabase project details
-    const SUPABASE_URL = "https://pnywwscdvkcysjyudlhp.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";
+    const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // Replace with your anon key
+    const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    const form = document.getElementById("contact-form");
-    const status = document.getElementById("status");
-    const btn = document.getElementById("submit-btn");
-
-    form.addEventListener("submit", async (e) => {
+    document.getElementById("contact-form").addEventListener("submit", async (e) => {
       e.preventDefault();
-
       const name = document.getElementById("name").value.trim();
       const company = document.getElementById("company").value.trim();
       const email = document.getElementById("email").value.trim();
       const phone = document.getElementById("phone").value.trim();
       const message = document.getElementById("message").value.trim();
 
-      if (!name || !email || !message) {
-        status.style.color = "red";
-        status.textContent = "❌ Please fill required fields: Name, Email, and Message.";
-        return;
-      }
-
-      btn.disabled = true;
-      status.style.color = "#004b8d";
-      status.textContent = "⏳ Sending your message...";
-
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from("contacts")
-        .insert([{ name, company, email, phone, message }], { returning: "representation" });
+        .insert([{ name, company, email, phone, message }]);
 
       if (error) {
-        console.error("Supabase Insert Error:", error);
-        status.style.color = "red";
-        status.textContent = "❌ Failed to save: " + error.message;
-        btn.disabled = false;
-        return;
+        alert("❌ Failed: " + error.message);
+      } else {
+        alert("✅ Message sent successfully!");
+        e.target.reset();
       }
-
-      console.log("Inserted row:", data);
-      status.style.color = "green";
-      status.textContent = "✅ Thank you! Your message was saved successfully.";
-      form.reset();
-      btn.disabled = false;
     });
   </script>
 </body>

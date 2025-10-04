@@ -83,7 +83,6 @@
       transition: 0.3s;
     }
 
-    /* === Mobile Menu === */
     @media (max-width: 768px) {
       .nav-links {
         position: absolute;
@@ -214,49 +213,93 @@
       font-weight: 500;
     }
 
-    /* === Contact Form === */
-    form {
+    /* === Contact Section === */
+    #contact {
+      background: #f9fafc;
+      padding: 80px 20px;
       display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 500px;
-      margin: 30px auto;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
-    input, textarea {
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      font-size: 1rem;
+    .contact-container {
+      max-width: 650px;
       width: 100%;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
 
-    button {
-      background: var(--navy);
+    #contact h2 {
+      color: #002f6c;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+    }
+
+    #contact-form input,
+    #contact-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+
+    #contact-form input:focus,
+    #contact-form textarea:focus {
+      border-color: #0073e6;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
+    }
+
+    #contact-form button {
+      width: 100%;
+      background: #004b8d;
       color: white;
+      padding: 14px;
       border: none;
-      padding: 12px;
-      border-radius: 6px;
-      font-weight: 600;
+      border-radius: 8px;
+      font-size: 1.1rem;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background 0.3s ease;
     }
 
-    button:hover {
-      background: var(--accent);
+    #contact-form button:hover {
+      background: #0073e6;
+    }
+
+    #status {
+      margin-top: 12px;
+      font-size: 0.95rem;
     }
 
     /* === Footer === */
     footer {
-      background: var(--navy);
+      background: #004b8d;
       color: white;
       text-align: center;
-      padding: 25px 8%;
+      padding: 25px 10px;
+      font-size: 0.95rem;
     }
 
-    footer p {
-      margin: 5px 0;
-      font-size: 0.9rem;
+    .footer-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    footer a {
+      color: #ffd166;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #ffffff;
     }
 
     @media (max-width: 992px) {
@@ -340,47 +383,76 @@
     </ul>
   </section>
 
+  <!-- ✅ Updated Contact Section -->
   <section id="contact">
-    <h2>Contact / Request a Quote</h2>
-    <form id="contact-form">
-      <input type="text" id="name" placeholder="Your Name" required />
-      <input type="text" id="company" placeholder="Your Company (optional)" />
-      <input type="email" id="email" placeholder="Your Email" required />
-      <input type="text" id="phone" placeholder="Your Phone" />
-      <textarea id="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+    <div class="contact-container">
+      <h2>Contact / Request a Quote</h2>
+
+      <form id="contact-form">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="text" id="company" placeholder="Your Company (optional)" />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <input type="text" id="phone" placeholder="Your Phone" />
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit" id="submit-btn">Send Message</button>
+        <p id="status"></p>
+      </form>
+    </div>
   </section>
 
   <footer>
-    <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</p>
-    <p>sales@cotswi.com</p>
+    <div class="footer-container">
+      <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India<br />
+        <a href="mailto:sales@cotswi.com">sales@cotswi.com</a>
+      </p>
+    </div>
   </footer>
 
   <script type="module">
-    // Supabase Form Integration
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
     const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // replace with your anon key
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // Replace with your real anon key
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    document.getElementById("contact-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const company = document.getElementById("company").value;
-      const email = document.getElementById("email").value;
-      const phone = document.getElementById("phone").value;
-      const message = document.getElementById("message").value;
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("status");
+    const button = document.getElementById("submit-btn");
 
-      const { error } = await supabase
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const company = document.getElementById("company").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        status.style.color = "red";
+        status.textContent = "❌ Please fill in all required fields.";
+        return;
+      }
+
+      button.disabled = true;
+      status.style.color = "#004b8d";
+      status.textContent = "⏳ Sending your message...";
+
+      const { data, error } = await supabase
         .from("contacts")
         .insert([{ name, company, email, phone, message }]);
 
-      if (error) alert("❌ Failed: " + error.message);
-      else {
-        alert("✅ Message sent successfully!");
-        e.target.reset();
+      if (error) {
+        status.style.color = "red";
+        status.textContent = "❌ Error: " + error.message;
+        button.disabled = false;
+        return;
       }
+
+      form.reset();
+      button.disabled = false;
+      status.style.color = "green";
+      status.textContent = "✅ Thank you! Your message has been sent successfully.";
+      window.scrollTo({ top: form.offsetTop - 100, behavior: "smooth" });
     });
 
     // Hamburger Toggle

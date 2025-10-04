@@ -24,8 +24,8 @@
 
     body {
       color: var(--text);
+      background: #fff;
       line-height: 1.6;
-      background-color: white;
     }
 
     /* === Navbar === */
@@ -65,48 +65,6 @@
       color: var(--accent);
     }
 
-    /* === Hamburger === */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      cursor: pointer;
-      width: 30px;
-      height: 24px;
-    }
-
-    .hamburger span {
-      height: 3px;
-      background: var(--navy);
-      margin: 4px 0;
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: white;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 20px 0;
-        display: none;
-        box-shadow: 0 5px 12px rgba(0,0,0,0.08);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
     /* === Hero === */
     .hero {
       background: linear-gradient(rgba(11,83,148,0.85), rgba(11,83,148,0.85)),
@@ -135,6 +93,7 @@
       border-radius: 25px;
       font-weight: 600;
       transition: 0.3s;
+      display: inline-block;
     }
 
     .btn:hover {
@@ -165,258 +124,131 @@
       font-size: 1.05rem;
     }
 
-    /* === Services === */
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+    /* === Contact Form === */
+    #contact {
+      background: var(--bg-light);
     }
 
-    .service {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: 30px auto;
       background: white;
+      padding: 30px;
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s;
     }
 
-    .service:hover {
-      transform: translateY(-6px);
-    }
-
-    .service img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-    /* === Industry List === */
-    ul.industry {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 25px;
-    }
-
-    ul.industry li {
-      background: white;
-      padding: 10px 18px;
-      border-radius: 25px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      color: var(--navy);
-      font-weight: 500;
-    }
-
-    /* === Contact Section === */
-    #contact {
-      background: #f9fafc;
-      padding: 80px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .contact-container {
-      max-width: 650px;
-      width: 100%;
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    #contact h2 {
-      color: #002f6c;
-      margin-bottom: 30px;
-      font-size: 1.8rem;
-    }
-
-    #contact-form input,
-    #contact-form textarea {
-      width: 100%;
-      padding: 12px 14px;
-      margin-bottom: 15px;
+    input, textarea {
+      padding: 12px;
+      border-radius: 6px;
       border: 1px solid #ccc;
-      border-radius: 8px;
       font-size: 1rem;
-      box-sizing: border-box;
-      transition: all 0.2s ease;
-    }
-
-    #contact-form input:focus,
-    #contact-form textarea:focus {
-      border-color: #0073e6;
-      outline: none;
-      box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
-    }
-
-    #contact-form button {
       width: 100%;
-      background: #004b8d;
-      color: white;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
     }
 
-    #contact-form button:hover {
-      background: #0073e6;
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: var(--accent);
     }
 
     #status {
-      margin-top: 12px;
+      text-align: center;
+      margin-top: 8px;
       font-size: 0.95rem;
     }
 
     /* === Footer === */
     footer {
-      background: #004b8d;
+      background: var(--navy);
       color: white;
       text-align: center;
-      padding: 25px 10px;
-      font-size: 0.95rem;
+      padding: 25px 8%;
     }
 
-    .footer-container {
-      max-width: 800px;
-      margin: 0 auto;
+    footer p {
+      margin: 5px 0;
+      font-size: 0.9rem;
     }
 
-    footer a {
-      color: #ffd166;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    footer a:hover {
-      color: #ffffff;
-    }
-
-    @media (max-width: 992px) {
-      .hero h1 { font-size: 2.2rem; }
-      section { padding: 60px 6%; }
-    }
-
-    @media (max-width: 600px) {
-      .hero { padding: 80px 5%; }
-      .hero h1 { font-size: 1.8rem; }
-      .hero p { font-size: 0.95rem; }
-      .service img { height: 140px; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      section { padding: 50px 6%; }
     }
   </style>
 </head>
+
 <body>
   <header>
     <nav>
       <img src="assets/logo.png" alt="COTSWI Logo" />
-      <ul class="nav-links" id="nav-links">
+      <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#vision">Vision</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#industries">Industries</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </nav>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <h1>Precision in Every Connection</h1>
     <p>Empowering innovation through reliable EMS solutions — wiring harness, PCB assembly, and mechanical integration.</p>
     <a href="#contact" class="btn">Request a Quote</a>
   </section>
 
-  <section id="about">
-    <h2>About COTSWI Technologies</h2>
-    <p>COTSWI Technologies is a women-managed, bootstrapped EMS startup from Coimbatore, specialising in reliable and traceable wiring harness and PCB assemblies. We focus on innovation, quality, and faster delivery timelines — helping customers turn ideas into production-ready solutions.</p>
-  </section>
-
-  <section id="vision">
-    <h2>Vision & Mission</h2>
-    <p><strong>Vision:</strong> Expand our market presence by offering innovative, cost-effective wiring harness and assembly solutions.<br>
-    <strong>Mission:</strong> Empower talented teams to deliver world-class EMS solutions built on integrity, innovation, and reliability.</p>
-  </section>
-
-  <section id="services">
-    <h2>Services & Capabilities</h2>
-    <div class="service-grid">
-      <div class="service">
-        <img src="assets/service1.jpg" alt="Wiring Harness" />
-        <h3>Wiring Harness</h3>
-        <p>Customised harness solutions for automotive, industrial, and consumer applications.</p>
-      </div>
-      <div class="service">
-        <img src="assets/service2.jpg" alt="PCB Assembly" />
-        <h3>PCB Assembly</h3>
-        <p>SMT & THT assembly with optical inspection and component sourcing.</p>
-      </div>
-      <div class="service">
-        <img src="assets/service3.jpg" alt="Mechanical Assembly" />
-        <h3>Mechanical Assembly</h3>
-        <p>Box builds, jigs, fixtures, cable integration, and quality testing.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="industries">
-    <h2>Industries Served</h2>
-    <ul class="industry">
-      <li>Automotive</li>
-      <li>Industrial Automation</li>
-      <li>Consumer Electronics</li>
-      <li>Renewable Energy</li>
-      <li>IoT / Smart Devices</li>
-    </ul>
-  </section>
-
-  <!-- ✅ Updated Contact Section -->
+  <!-- Contact Section -->
   <section id="contact">
-    <div class="contact-container">
-      <h2>Contact / Request a Quote</h2>
-
-      <form id="contact-form">
-        <input type="text" id="name" placeholder="Your Name" required />
-        <input type="text" id="company" placeholder="Your Company (optional)" />
-        <input type="email" id="email" placeholder="Your Email" required />
-        <input type="text" id="phone" placeholder="Your Phone" />
-        <textarea id="message" placeholder="Your Message" required></textarea>
-        <button type="submit" id="submit-btn">Send Message</button>
-        <p id="status"></p>
-      </form>
-    </div>
+    <h2>Contact / Request a Quote</h2>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="text" id="company" placeholder="Your Company (optional)" />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="text" id="phone" placeholder="Your Phone" />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit" id="submit-btn">Send Message</button>
+      <p id="status"></p>
+    </form>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <div class="footer-container">
-      <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India<br />
-        <a href="mailto:sales@cotswi.com">sales@cotswi.com</a>
-      </p>
-    </div>
+    <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</p>
+    <p>sales@cotswi.com</p>
   </footer>
 
+  <!-- Supabase Integration -->
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-    const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // Replace with your real anon key
-    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // 🟦 Replace with your actual Supabase project details
+    const SUPABASE_URL = "https://pnywwscdvkcysjyudlhp.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     const form = document.getElementById("contact-form");
     const status = document.getElementById("status");
-    const button = document.getElementById("submit-btn");
+    const btn = document.getElementById("submit-btn");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -429,38 +261,31 @@
 
       if (!name || !email || !message) {
         status.style.color = "red";
-        status.textContent = "❌ Please fill in all required fields.";
+        status.textContent = "❌ Please fill required fields: Name, Email, and Message.";
         return;
       }
 
-      button.disabled = true;
+      btn.disabled = true;
       status.style.color = "#004b8d";
       status.textContent = "⏳ Sending your message...";
 
       const { data, error } = await supabase
         .from("contacts")
-        .insert([{ name, company, email, phone, message }]);
+        .insert([{ name, company, email, phone, message }], { returning: "representation" });
 
       if (error) {
+        console.error("Supabase Insert Error:", error);
         status.style.color = "red";
-        status.textContent = "❌ Error: " + error.message;
-        button.disabled = false;
+        status.textContent = "❌ Failed to save: " + error.message;
+        btn.disabled = false;
         return;
       }
 
-      form.reset();
-      button.disabled = false;
+      console.log("Inserted row:", data);
       status.style.color = "green";
-      status.textContent = "✅ Thank you! Your message has been sent successfully.";
-      window.scrollTo({ top: form.offsetTop - 100, behavior: "smooth" });
-    });
-
-    // Hamburger Toggle
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("nav-links");
-    hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-      hamburger.classList.toggle("open");
+      status.textContent = "✅ Thank you! Your message was saved successfully.";
+      form.reset();
+      btn.disabled = false;
     });
   </script>
 </body>

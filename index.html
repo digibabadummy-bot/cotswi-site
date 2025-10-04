@@ -112,7 +112,7 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 const SUPABASE_URL = "https://pnywwscdvkcysjyudlhp.supabase.co"; // replace if different
-const SUPABASE_KEY = "REPLACE_WITH_ANON_KEY"; // <--- paste anon public key here
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // <--- paste anon public key here
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 document.getElementById("contact-form").addEventListener("submit", async (e) => {

@@ -1,148 +1,395 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>COTSWI Technologies</title>
-<link rel="icon" href="assets/logo.png">
-<link rel="stylesheet" href="style.css">
-<meta name="description" content="COTSWI Technologies — EMS partner for wiring harness & PCB assembly. Bootstrapped, women-managed, Coimbatore.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COTSWI Technologies</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #0b5394;
+      --accent: #ff7a18;
+      --bg-light: #f9fafc;
+      --text: #222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      color: var(--text);
+      line-height: 1.6;
+      background-color: white;
+    }
+
+    /* === Navbar === */
+    header {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 8%;
+    }
+
+    nav img {
+      height: 50px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: var(--navy);
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      cursor: pointer;
+      width: 30px;
+      height: 24px;
+    }
+
+    .hamburger span {
+      height: 3px;
+      background: var(--navy);
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* === Mobile Menu === */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        display: none;
+        box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* === Hero === */
+    .hero {
+      background: linear-gradient(rgba(11,83,148,0.85), rgba(11,83,148,0.85)),
+                  url("assets/bg.jpg") center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 120px 8%;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .btn {
+      background: white;
+      color: var(--navy);
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* === Sections === */
+    section {
+      padding: 70px 10%;
+    }
+
+    section:nth-child(even) {
+      background: var(--bg-light);
+    }
+
+    h2 {
+      color: var(--navy);
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1.9rem;
+    }
+
+    p {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    /* === Services === */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .service {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .service:hover {
+      transform: translateY(-6px);
+    }
+
+    .service img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    /* === Industry List === */
+    ul.industry {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    ul.industry li {
+      background: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    /* === Contact Form === */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: 30px auto;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    button {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: var(--accent);
+    }
+
+    /* === Footer === */
+    footer {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 25px 8%;
+    }
+
+    footer p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 992px) {
+      .hero h1 { font-size: 2.2rem; }
+      section { padding: 60px 6%; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 80px 5%; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 0.95rem; }
+      .service img { height: 140px; }
+    }
+  </style>
 </head>
 <body>
-<header class="site-header">
-  <nav class="nav">
-    <div class="brand"><img src="assets/logo.png" alt="COTSWI Logo" height="48"></div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#vision">Vision</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#industries">Industries</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <header>
+    <nav>
+      <img src="assets/logo.png" alt="COTSWI Logo" />
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
 
-<section class="hero">
-  <div class="hero-inner">
+  <section class="hero">
     <h1>Precision in Every Connection</h1>
-    <p class="tag">Empowering innovation through reliable EMS solutions — wiring harnesses, PCB assembly and box builds.</p>
-    <a class="btn" href="#contact">Request a Quote</a>
-  </div>
-</section>
+    <p>Empowering innovation through reliable EMS solutions — wiring harness, PCB assembly, and mechanical integration.</p>
+    <a href="#contact" class="btn">Request a Quote</a>
+  </section>
 
-<main>
-<section id="about" class="card">
-  <h2>About COTSWI Technologies</h2>
-  <p>COTSWI Technologies is a women-managed, bootstrapped EMS startup from Coimbatore, specialising in reliable and traceable wiring harness and PCB assemblies. We focus on innovation, quality, and faster delivery timelines — helping customers turn ideas into production-ready solutions.</p>
-</section>
+  <section id="about">
+    <h2>About COTSWI Technologies</h2>
+    <p>COTSWI Technologies is a women-managed, bootstrapped EMS startup from Coimbatore, specialising in reliable and traceable wiring harness and PCB assemblies. We focus on innovation, quality, and faster delivery timelines — helping customers turn ideas into production-ready solutions.</p>
+  </section>
 
-<section id="vision" class="card">
-  <h2>Vision &amp; Mission</h2>
-  <p><strong>Vision:</strong> Expand market presence by offering innovative, cost-effective wiring harness and assembly solutions.<br>
-  <strong>Mission:</strong> Empower talented teams to deliver world-class EMS solutions rooted in integrity, innovation, and reliability.</p>
-</section>
+  <section id="vision">
+    <h2>Vision & Mission</h2>
+    <p><strong>Vision:</strong> Expand our market presence by offering innovative, cost-effective wiring harness and assembly solutions.<br>
+    <strong>Mission:</strong> Empower talented teams to deliver world-class EMS solutions built on integrity, innovation, and reliability.</p>
+  </section>
 
-<section id="why" class="card features">
-  <h2>Why Choose Us</h2>
-  <div class="grid-3">
-    <div class="feature"><strong>Rapid turnaround</strong><p>Startup agility for fast prototyping to production.</p></div>
-    <div class="feature"><strong>In-house testing</strong><p>Prototype validation and integration testing.</p></div>
-    <div class="feature"><strong>Traceability</strong><p>Documented processes for component-level traceability.</p></div>
-    <div class="feature"><strong>Transparent communication</strong><p>Clear timelines and regular updates.</p></div>
-    <div class="feature"><strong>Flexible engagement</strong><p>From small batches to larger runs — we adapt to your needs.</p></div>
-  </div>
-</section>
+  <section id="services">
+    <h2>Services & Capabilities</h2>
+    <div class="service-grid">
+      <div class="service">
+        <img src="assets/service1.jpg" alt="Wiring Harness" />
+        <h3>Wiring Harness</h3>
+        <p>Customised harness solutions for automotive, industrial, and consumer applications.</p>
+      </div>
+      <div class="service">
+        <img src="assets/service2.jpg" alt="PCB Assembly" />
+        <h3>PCB Assembly</h3>
+        <p>SMT & THT assembly with optical inspection and component sourcing.</p>
+      </div>
+      <div class="service">
+        <img src="assets/service3.jpg" alt="Mechanical Assembly" />
+        <h3>Mechanical Assembly</h3>
+        <p>Box builds, jigs, fixtures, cable integration, and quality testing.</p>
+      </div>
+    </div>
+  </section>
 
-<section id="services" class="card">
-  <h2>Services &amp; Capabilities</h2>
-  <div class="service-grid">
-    <article class="service">
-      <img src="assets/service1.jpg" alt="Wiring harness">
-      <h3>Wiring Harness</h3>
-      <p>Customised harness solutions for automotive, industrial, and consumer products.</p>
-    </article>
-    <article class="service">
-      <img src="assets/service2.jpg" alt="PCB assembly">
-      <h3>PCB Assembly</h3>
-      <p>SMT &amp; THT assembly with optical inspection and supply chain support.</p>
-    </article>
-    <article class="service">
-      <img src="assets/service3.jpg" alt="Mechanical assembly">
-      <h3>Mechanical Assembly</h3>
-      <p>Box builds, jig fixtures, cable integration and quality checks.</p>
-    </article>
-  </div>
-</section>
+  <section id="industries">
+    <h2>Industries Served</h2>
+    <ul class="industry">
+      <li>Automotive</li>
+      <li>Industrial Automation</li>
+      <li>Consumer Electronics</li>
+      <li>Renewable Energy</li>
+      <li>IoT / Smart Devices</li>
+    </ul>
+  </section>
 
-<section id="industries" class="card">
-  <h2>Industries Served</h2>
-  <ul class="industry-list">
-    <li>Automotive</li>
-    <li>Industrial Automation</li>
-    <li>Consumer Electronics</li>
-    <li>Renewable Energy</li>
-    <li>IoT / Smart Devices</li>
-  </ul>
-</section>
+  <section id="contact">
+    <h2>Contact / Request a Quote</h2>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="text" id="company" placeholder="Your Company (optional)" />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="text" id="phone" placeholder="Your Phone" />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
-<section id="contact" class="card contact">
-  <h2>Contact / Request a Quote</h2>
-  <form id="contact-form">
-    <input name="name" id="name" placeholder="Your Name" required>
-    <input name="company" id="company" placeholder="Company (optional)">
-    <input name="email" id="email" type="email" placeholder="Email" required>
-    <input name="phone" id="phone" placeholder="Phone">
-    <textarea name="message" id="message" placeholder="Your Message" required></textarea>
-    <button type="submit" id="submit-btn">Send Message</button>
-    <p id="form-status" class="muted"></p>
-  </form>
-</section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
+  <footer>
     <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</p>
     <p>sales@cotswi.com</p>
-  </div>
-</footer>
+  </footer>
 
-<script type="module">
-// Supabase integration - update with your values
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+  <script type="module">
+    // Supabase Form Integration
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // replace with your anon key
+    const supabase = createClient(supabaseUrl, supabaseKey);
 
-const SUPABASE_URL = "https://pnywwscdvkcysjyudlhp.supabase.co"; // replace if different
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // <--- paste anon public key here
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+    document.getElementById("contact-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const company = document.getElementById("company").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const message = document.getElementById("message").value;
 
-document.getElementById("contact-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const name = document.getElementById("name").value.trim();
-  const company = document.getElementById("company").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const message = document.getElementById("message").value.trim();
-  document.getElementById("form-status").textContent = "Submitting...";
+      const { error } = await supabase
+        .from("contacts")
+        .insert([{ name, company, email, phone, message }]);
 
-  // Basic client-side validation
-  if (!name || !email || !message) {
-    alert("Please fill required fields.");
-    document.getElementById("form-status").textContent = "";
-    return;
-  }
+      if (error) alert("❌ Failed: " + error.message);
+      else {
+        alert("✅ Message sent successfully!");
+        e.target.reset();
+      }
+    });
 
-  try {
-    const { error } = await supabase.from("contacts").insert([{ name, company, email, phone, message }]);
-    if (error) throw error;
-    document.getElementById("form-status").textContent = "Thanks — your message was sent.";
-    e.target.reset();
-  } catch (err) {
-    console.error(err);
-    document.getElementById("form-status").textContent = "Failed to send. Check console.";
-    alert("Error: " + (err.message || err));
-  }
-});
-</script>
-
+    // Hamburger Toggle
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("open");
+    });
+  </script>
 </body>
 </html>

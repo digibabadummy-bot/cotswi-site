@@ -68,10 +68,10 @@
       color: var(--accent);
     }
 
-    /* Hero (no video) */
+    /* Hero */
     .hero {
-      height: 100vh;
-      background: linear-gradient(135deg, #0b5394, #174ea6, #ff7a18);
+      height: 90vh;
+      background: linear-gradient(135deg, #0b5394, #1b63c2, #ff7a18);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -148,6 +148,7 @@
       box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     }
 
+    /* Contact form */
     form {
       display: flex;
       flex-direction: column;
@@ -242,7 +243,7 @@
   <p><a href="mailto:sales@cotswi.com">sales@cotswi.com</a></p>
 </footer>
 
-<!-- Supabase + Email -->
+<!-- Supabase + Email Integration -->
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
   const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
@@ -275,7 +276,7 @@
       console.error("DB Error:", err.message);
     }
 
-    // Send Email via Edge Function
+    // Send Email via Supabase Edge Function
     try {
       const res = await fetch("https://pnywwscdvkcysjyudlhp.supabase.co/functions/v1/send-mail", {
         method: "POST",

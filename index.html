@@ -319,34 +319,60 @@
 <!-- Supabase Integration -->
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+  // Initialize Supabase client for DB insert
   const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // Replace with your Supabase anon key
+  const supabaseKey = "55"; // Replace with your anon key
   const supabase = createClient(supabaseUrl, supabaseKey);
 
+  // Contact Form Submission Handler
   document.getElementById("contact-form").addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const name = document.getElementById("name").value.trim();
     const company = document.getElementById("company").value.trim();
     const email = document.getElementById("email").value.trim();
     const phone = document.getElementById("phone").value.trim();
     const message = document.getElementById("message").value.trim();
 
-    const { error } = await supabase.from("contacts").insert([{ name, company, email, phone, message }]);
-    if (error) alert("❌ Failed: " + error.message);
-    else {
-      alert("✅ Thank you! We'll get back to you shortly.");
-      e.target.reset();
+    const data = { name, company, email, phone, message };
+
+    try {
+      // 1️⃣ Insert into Supabase Database
+      const { error: insertError } = await supabase.from("contacts").insert([data]);
+      if (insertError) throw insertError;
+
+      // 2️⃣ Trigger Edge Function to send email
+      const res = await fetch("https://pnywwscdvkcysjyudlhp.supabase.co/functions/v1/send-mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        alert("✅ Thank you! Your message has been sent and saved successfully.");
+        e.target.reset();
+      } else {
+        const errText = await res.text();
+        alert("❌ Email failed to send: " + errText);
+      }
+    } catch (error) {
+      alert("⚠️ Something went wrong. Please try again later.");
+      console.error(error);
     }
   });
 
-  // Fade-in on scroll
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add("visible");
-    });
-  }, { threshold: 0.2 });
+  // Fade-in animation on scroll
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    },
+    { threshold: 0.2 }
+  );
 
-  document.querySelectorAll("section").forEach(sec => observer.observe(sec));
+  document.querySelectorAll("section").forEach((sec) => observer.observe(sec));
 </script>
 
 </body>

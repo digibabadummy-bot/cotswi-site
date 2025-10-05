@@ -69,37 +69,62 @@
     }
 
     /* Hero */
-    .hero {
-      position: relative;
-      color: white;
-      text-align: center;
-      padding: 150px 8%;
-      overflow: hidden;
-    }
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 0 10%;
+}
 
-    .hero-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      filter: brightness(0.45);
-    }
+.hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.55); /* darkens the video slightly */
+}
 
-    .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
+/* Dark overlay */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* adjustable overlay darkness */
+  z-index: 1;
+}
 
-    .hero p {
-      max-width: 800px;
-      margin: 0 auto 30px;
-      font-size: 1.1rem;
-      opacity: 0.95;
-    }
+/* Ensure text stays on top */
+.hero h1,
+.hero p,
+.hero .btn {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin-bottom: 30px;
+}
 
     .btn {
       background: white;

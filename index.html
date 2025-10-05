@@ -31,6 +31,7 @@
       scroll-behavior: smooth;
     }
 
+    /* Navbar */
     header {
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -67,10 +68,10 @@
       color: var(--accent);
     }
 
+    /* Hero (no video) */
     .hero {
-      position: relative;
       height: 100vh;
-      overflow: hidden;
+      background: linear-gradient(135deg, #0b5394, #174ea6, #ff7a18);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -78,36 +79,6 @@
       text-align: center;
       color: white;
       padding: 0 10%;
-    }
-
-    .hero video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-      filter: brightness(0.55);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 1;
-    }
-
-    .hero h1,
-    .hero p,
-    .hero .btn {
-      position: relative;
-      z-index: 2;
-      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
     }
 
     .hero h1 {
@@ -137,6 +108,7 @@
       color: white;
     }
 
+    /* Sections */
     section {
       padding: 70px 10%;
       opacity: 0;
@@ -248,9 +220,6 @@
 </header>
 
 <section id="home" class="hero">
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="assets/hero-bg.mp4" type="video/mp4">
-  </video>
   <h1>Precision in Every Connection</h1>
   <p>Empowering innovation through women, technology, and compassion — redefining wiring harness manufacturing with emotion and excellence.</p>
   <a href="#contact" class="btn">Request a Quote</a>
@@ -269,20 +238,19 @@
 </section>
 
 <footer>
-  <p>© 2025 COTSWI Technologies | V7PH+92, Kullampalayam (West), Tamil Nadu – 641671, India</p>
+  <p>© 2025 COTSWI Technologies | Tamil Nadu – 641671, India</p>
   <p><a href="mailto:sales@cotswi.com">sales@cotswi.com</a></p>
 </footer>
 
+<!-- Supabase + Email -->
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-
   const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
   const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   document.getElementById("contact-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const payload = {
       name: document.getElementById("name").value.trim(),
       company: document.getElementById("company").value.trim(),
@@ -292,22 +260,22 @@
     };
 
     if (!payload.name || !payload.email || !payload.message) {
-      alert("⚠️ Please fill out required fields (Name, Email, Message).");
+      alert("⚠️ Please fill out required fields.");
       return;
     }
 
     let dbSuccess = false, mailSuccess = false;
 
-    // Save to database
+    // Save to Supabase
     try {
       const { error } = await supabase.from("contacts").insert([payload]);
       if (error) throw error;
       dbSuccess = true;
     } catch (err) {
-      console.error("Database error:", err.message);
+      console.error("DB Error:", err.message);
     }
 
-    // Send email
+    // Send Email via Edge Function
     try {
       const res = await fetch("https://pnywwscdvkcysjyudlhp.supabase.co/functions/v1/send-mail", {
         method: "POST",
@@ -315,19 +283,17 @@
         body: JSON.stringify(payload),
       });
 
-      const result = await res.text();
-      console.log("Email function response:", result);
-
+      const text = await res.text();
+      console.log("Email Response:", text);
       if (res.ok) mailSuccess = true;
     } catch (err) {
-      console.error("Email error:", err.message);
+      console.error("Email Error:", err.message);
     }
 
-    if (dbSuccess && mailSuccess) alert("✅ Message saved and email sent successfully!");
-    else if (dbSuccess) alert("✅ Message saved, but email failed.");
-    else if (mailSuccess) alert("✅ Email sent, but database save failed.");
-    else alert("❌ Both operations failed. Please try again later.");
-
+    if (dbSuccess && mailSuccess) alert("✅ Message saved & email sent!");
+    else if (dbSuccess) alert("✅ Message saved, email failed.");
+    else if (mailSuccess) alert("✅ Email sent, save failed.");
+    else alert("❌ Failed both. Please try again later.");
     e.target.reset();
   });
 </script>

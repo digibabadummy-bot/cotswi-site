@@ -406,52 +406,68 @@
   </form>
 </section>
 
-<footer>
-  <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</p>
-  <p><a href="mailto:sales@cotswi.com">sales@cotswi.com</a></p>
-</footer>
+  <footer>
+    <div>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</div>
+    <div style="margin-top:6px;">
+      <a href="mailto:sales@cotswi.com">sales@cotswi.com</a>
+    </div>
+  </footer>
 
-<!-- JS for menu toggle and Supabase -->
-<script type="module">
-  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+  <!-- =========================
+       Scripts: Menu toggle, Section animation, Supabase form
+  ========================= -->
+  <script type="module">
+    // ----- NAV MENU TOGGLE -----
+    const menu = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menu.addEventListener('click', () => {
+      const expanded = menu.getAttribute('aria-expanded') === 'true';
+      menu.setAttribute('aria-expanded', (!expanded).toString());
+      navLinks.classList.toggle('active');
+    });
 
-  const menu = document.getElementById("menu-toggle");
-  const nav = document.getElementById("nav-links");
-  menu.addEventListener("click", () => nav.classList.toggle("active"));
+    // ----- SECTION FADE-IN ANIMATION -----
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.18 });
 
-  const supabase = createClient(
-    "https://pnywwscdvkcysjyudlhp.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"
-  );
+    document.querySelectorAll('main section').forEach(sec => observer.observe(sec));
 
-  const form = document.getElementById("contact-form");
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const data = {
-      name: document.getElementById("name").value,
-      company: document.getElementById("company").value,
-      email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value,
-      message: document.getElementById("message").value,
-    };
+    // ----- SUPABASE CONTACT FORM -----
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";  // <-- Replace this with your Supabase anon key
+    const supabase = createClient(supabaseUrl, supabaseKey);
 
-    try {
-      const { error } = await supabase.from("contacts").insert([data]);
-      if (error) throw error;
-      alert("✅ Thank you — your message has been received!");
-      form.reset();
-    } catch (err) {
-      alert("❌ Submission failed. Please try again.");
-    }
-  });
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-  // Animate sections
-  const observer = new IntersectionObserver((entries) =>
-    entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
-    { threshold: 0.15 }
-  );
-  document.querySelectorAll("section").forEach((sec) => observer.observe(sec));
-</script>
+      const data = {
+        name: document.getElementById('name').value.trim(),
+        company: document.getElementById('company').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        message: document.getElementById('message').value.trim(),
+      };
+
+      try {
+        // Insert into Supabase table named "contacts"
+        const { error } = await supabase.from('contacts').insert([data]);
+        if (error) throw error;
+
+        alert('✅ Thank you — your message has been received successfully!');
+        form.reset();
+      } catch (err) {
+        console.error('Submission error:', err);
+        alert('❌ Submission failed. Please try again later or email sales@cotswi.com');
+      }
+    });
+  </script>
 
 </body>
 </html>

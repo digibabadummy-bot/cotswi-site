@@ -31,6 +31,7 @@
       scroll-behavior: smooth;
     }
 
+    /* Navbar */
     header {
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -67,37 +68,44 @@
       color: var(--accent);
     }
 
-    /* HERO SECTION */
+    /* Hero */
     .hero {
       position: relative;
-      height: 100vh;
-      background: linear-gradient(135deg, #0b5394, #174ea6, #ff7a18);
       color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       text-align: center;
-      padding: 0 10%;
+      padding: 150px 8%;
       overflow: hidden;
+      background: linear-gradient(135deg, #0b5394, #174ea6, #ff7a18);
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.45);
     }
 
     .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
+      font-size: 2.8rem;
       margin-bottom: 20px;
+      font-weight: 700;
       text-shadow: 0 4px 8px rgba(0,0,0,0.6);
+      z-index: 1;
       position: relative;
-      z-index: 2;
     }
 
     .hero p {
-      font-size: 1.2rem;
       max-width: 800px;
-      margin-bottom: 30px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      opacity: 0.95;
       text-shadow: 0 3px 6px rgba(0,0,0,0.5);
+      z-index: 1;
       position: relative;
-      z-index: 2;
     }
 
     .btn {
@@ -108,8 +116,8 @@
       font-weight: 600;
       transition: 0.3s;
       text-decoration: none;
+      z-index: 1;
       position: relative;
-      z-index: 2;
     }
 
     .btn:hover {
@@ -117,6 +125,7 @@
       color: white;
     }
 
+    /* Sections */
     section {
       padding: 70px 10%;
       opacity: 0;
@@ -156,6 +165,7 @@
       box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     }
 
+    /* Contact */
     form {
       display: flex;
       flex-direction: column;
@@ -211,8 +221,8 @@
     }
   </style>
 </head>
-
 <body>
+
 <header>
   <nav>
     <img src="assets/logo.png" alt="COTSWI Logo" />
@@ -228,6 +238,9 @@
 </header>
 
 <section id="home" class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="assets/hero-bg.mp4" type="video/mp4">
+  </video>
   <h1>Precision in Every Connection</h1>
   <p>Empowering innovation through women, technology, and compassion — redefining wiring harness manufacturing with emotion and excellence.</p>
   <a href="#contact" class="btn">Request a Quote</a>
@@ -235,25 +248,25 @@
 
 <section id="about">
   <h2>🏭 About COTSWI Technologies</h2>
-  <img src="assets/about-ai.jpg.png" alt="About COTSWI" class="img-full">
+  <img src="assets/about-ai.jpg" alt="About COTSWI" class="img-full">
   <p>COTSWI Technologies was founded by a group of passionate women — Electrical Engineers, Software Engineers, and a Sociology Graduate — united by a shared dream: to create a world-class wiring harness assembly setup that blends technology, empathy, and integrity.</p>
 </section>
 
 <section id="wiring">
   <h2>⚙️ Our Core Expertise — Wiring Harness Solutions</h2>
-  <img src="assets/wiring-harness.jpg.png" alt="Wiring Harness" class="img-full">
+  <img src="assets/wiring-harness.jpg" alt="Wiring Harness" class="img-full">
   <p>We design, develop, and produce wiring harnesses that serve as the nervous system of modern vehicles and industrial systems — carrying power, signals, and reliability across every connection.</p>
 </section>
 
 <section id="sustainability">
   <h2>💚 Sustainability — Empowering People, Preserving the Planet</h2>
-  <img src="assets/sustainability.jpg.png" alt="Sustainability" class="img-full">
+  <img src="assets/sustainability.jpg" alt="Sustainability" class="img-full">
   <p>We focus on creating long-term value by caring for our people, our community, and our environment.</p>
 </section>
 
 <section id="plan">
   <h2>🚀 Our 5-Year Vision Plan — “Wired for the Future”</h2>
-  <img src="assets/vision-plan.jpg.png" alt="Vision Plan" class="img-full">
+  <img src="assets/vision-plan.jpg" alt="Vision Plan" class="img-full">
   <p>We’re not just building a company; we’re building a movement that connects hearts, hands, and innovation.</p>
 </section>
 
@@ -274,12 +287,12 @@
   <p><a href="mailto:sales@cotswi.com">sales@cotswi.com</a></p>
 </footer>
 
-<!-- ✅ Supabase Integration -->
+<!-- Supabase + Email Integration -->
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
   const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // replace with your actual key
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   document.getElementById("contact-form").addEventListener("submit", async (e) => {
@@ -312,8 +325,6 @@
         body: JSON.stringify(data),
       });
 
-      const result = await res.text();
-      console.log("Edge Function Response:", result);
       if (res.ok) mailSuccess = true;
     } catch (err) {
       console.error("Email send error:", err.message);

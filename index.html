@@ -320,12 +320,11 @@
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-  // Initialize Supabase client for DB insert
+  // ✅ Initialize Supabase client for DB insert only
   const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-  const supabaseKey = "55"; // Replace with your anon key
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // Replace with your actual anon key
   const supabase = createClient(supabaseUrl, supabaseKey);
 
-  // Contact Form Submission Handler
   document.getElementById("contact-form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -336,33 +335,48 @@
     const message = document.getElementById("message").value.trim();
 
     const data = { name, company, email, phone, message };
+    let dbSuccess = false;
+    let mailSuccess = false;
 
+    // 🧠 Step 1: Save to Supabase Database
     try {
-      // 1️⃣ Insert into Supabase Database
-      const { error: insertError } = await supabase.from("contacts").insert([data]);
-      if (insertError) throw insertError;
+      const { error: dbError } = await supabase.from("contacts").insert([data]);
+      if (dbError) throw dbError;
+      dbSuccess = true;
+    } catch (err) {
+      console.error("❌ Database insert failed:", err.message);
+      alert("⚠️ Form saved partially — database insert failed.");
+    }
 
-      // 2️⃣ Trigger Edge Function to send email
+    // ✉️ Step 2: Send Email (Edge Function)
+    try {
       const res = await fetch("https://pnywwscdvkcysjyudlhp.supabase.co/functions/v1/send-mail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      if (res.ok) {
-        alert("✅ Thank you! Your message has been sent and saved successfully.");
-        e.target.reset();
-      } else {
-        const errText = await res.text();
-        alert("❌ Email failed to send: " + errText);
-      }
-    } catch (error) {
-      alert("⚠️ Something went wrong. Please try again later.");
-      console.error(error);
+      if (res.ok) mailSuccess = true;
+      else throw new Error(await res.text());
+    } catch (err) {
+      console.error("❌ Email sending failed:", err.message);
+      alert("⚠️ Form saved but email sending failed.");
     }
+
+    // ✅ Final user message
+    if (dbSuccess && mailSuccess)
+      alert("✅ Thank you! Your message has been saved and emailed successfully.");
+    else if (dbSuccess)
+      alert("✅ Your message was saved, but email delivery failed.");
+    else if (mailSuccess)
+      alert("✅ Your message was emailed, but database save failed.");
+    else
+      alert("❌ Both database and email failed. Please try again later.");
+
+    e.target.reset();
   });
 
-  // Fade-in animation on scroll
+  // Smooth fade-in animation
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -371,9 +385,6 @@
     },
     { threshold: 0.2 }
   );
-
   document.querySelectorAll("section").forEach((sec) => observer.observe(sec));
 </script>
 
-</body>
-</html>

@@ -407,67 +407,62 @@
 </section>
 
   <footer>
-    <div>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</div>
-    <div style="margin-top:6px;">
-      <a href="mailto:sales@cotswi.com">sales@cotswi.com</a>
-    </div>
+    <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</p>
+    <p><a href="mailto:sales@cotswi.com">sales@cotswi.com</a></p>
   </footer>
 
-  <!-- =========================
-       Scripts: Menu toggle, Section animation, Supabase form
-  ========================= -->
+  <!-- ✅ Simple working Supabase form + Scroll animation -->
   <script type="module">
-    // ----- NAV MENU TOGGLE -----
-    const menu = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
-    menu.addEventListener('click', () => {
-      const expanded = menu.getAttribute('aria-expanded') === 'true';
-      menu.setAttribute('aria-expanded', (!expanded).toString());
-      navLinks.classList.toggle('active');
-    });
-
-    // ----- SECTION FADE-IN ANIMATION -----
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.18 });
-
-    document.querySelectorAll('main section').forEach(sec => observer.observe(sec));
-
-    // ----- SUPABASE CONTACT FORM -----
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
     const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";  // <-- Replace this with your Supabase anon key
+    const supabaseKey =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    // ✅ Contact Form Submission
+    document
+      .getElementById("contact-form")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-      const data = {
-        name: document.getElementById('name').value.trim(),
-        company: document.getElementById('company').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        message: document.getElementById('message').value.trim(),
-      };
+        const name = document.getElementById("name").value.trim();
+        const company = document.getElementById("company").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const message = document.getElementById("message").value.trim();
 
-      try {
-        // Insert into Supabase table named "contacts"
-        const { error } = await supabase.from('contacts').insert([data]);
-        if (error) throw error;
+        try {
+          const { error } = await supabase
+            .from("contacts")
+            .insert([{ name, company, email, phone, message }]);
 
-        alert('✅ Thank you — your message has been received successfully!');
-        form.reset();
-      } catch (err) {
-        console.error('Submission error:', err);
-        alert('❌ Submission failed. Please try again later or email sales@cotswi.com');
-      }
+          if (error) throw error;
+
+          alert("✅ Thank you for contacting COTSWI! We will reach out soon.");
+          e.target.reset();
+        } catch (err) {
+          console.error("❌ Submission failed:", err.message);
+          alert("❌ Something went wrong. Please try again later.");
+        }
+      });
+
+    // ✅ Fade-in animation for sections
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document.querySelectorAll("section").forEach((section) => {
+      observer.observe(section);
     });
   </script>
-
 </body>
 </html>
+

@@ -112,6 +112,7 @@
         padding: 20px 0;
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         display: none;
+        animation: slideDown 0.35s ease-in-out;
       }
 
       .nav-links.active {
@@ -124,6 +125,17 @@
 
       nav img {
         height: 40px;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     }
 
@@ -325,7 +337,7 @@
   <p>What began as a small initiative, funded by their personal savings, has evolved into a symbol of innovation, empowerment, and transformation. From a humble village in Tamil Nadu, these women envisioned a company capable of competing globally while staying deeply rooted in human values, emotional intelligence, and local pride.</p>
 </section>
 
-  <section id="founders">
+<section id="founders">
   <h2>👩‍🔧 Our Founders — The Strength Behind the Circuit</h2>
   <div class="subline"></div>
   <ul class="clean">
@@ -334,7 +346,7 @@
     <li><strong>Sociology Graduate:</strong> Adds human understanding, empathy, and social awareness to company culture.</li>
   </ul>
 </section>
-  
+
 <section id="wiring">
   <h2>⚙️ Our Core Expertise — Wiring Harness Solutions</h2>
   <div class="subline"></div>
@@ -406,63 +418,68 @@
   </form>
 </section>
 
-  <footer>
-    <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</p>
-    <p><a href="mailto:sales@cotswi.com">sales@cotswi.com</a></p>
-  </footer>
+<footer>
+  <p>© 2025 COTSWI Technologies | Coimbatore, Tamil Nadu, India</p>
+  <p><a href="mailto:sales@cotswi.com">sales@cotswi.com</a></p>
+</footer>
 
-  <!-- ✅ Simple working Supabase form + Scroll animation -->
-  <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+<script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-    const supabaseKey =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+  const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
+  const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // ✅ Contact Form Submission
-    document
-      .getElementById("contact-form")
-      .addEventListener("submit", async (e) => {
-        e.preventDefault();
+  document.getElementById("contact-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        const name = document.getElementById("name").value.trim();
-        const company = document.getElementById("company").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const message = document.getElementById("message").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const company = document.getElementById("company").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-        try {
-          const { error } = await supabase
-            .from("contacts")
-            .insert([{ name, company, email, phone, message }]);
+    try {
+      const { error } = await supabase.from("contacts").insert([{ name, company, email, phone, message }]);
+      if (error) throw error;
+      alert("✅ Thank you for contacting COTSWI! We will reach out soon.");
+      e.target.reset();
+    } catch (err) {
+      console.error("❌ Submission failed:", err.message);
+      alert("❌ Something went wrong. Please try again later.");
+    }
+  });
 
-          if (error) throw error;
-
-          alert("✅ Thank you for contacting COTSWI! We will reach out soon.");
-          e.target.reset();
-        } catch (err) {
-          console.error("❌ Submission failed:", err.message);
-          alert("❌ Something went wrong. Please try again later.");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
         }
       });
+    },
+    { threshold: 0.2 }
+  );
 
-    // ✅ Fade-in animation for sections
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+  document.querySelectorAll("section").forEach((section) => {
+    observer.observe(section);
+  });
 
-    document.querySelectorAll("section").forEach((section) => {
-      observer.observe(section);
+  // ✅ Hamburger Menu Functionality
+  const toggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+
+  toggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+
+  document.querySelectorAll(".nav-links a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
-

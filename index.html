@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>COTSWI Technologies</title>
+  <title>COTSWI Technologies | Precision in Every Connection</title>
+  <meta name="description" content="COTSWI Technologies is a women-led wiring harness and EMS manufacturer redefining precision with empathy, innovation, and sustainability." />
   <link rel="icon" href="assets/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
@@ -202,6 +203,13 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      nav { flex-direction: column; gap: 10px; }
+      .nav-links { flex-wrap: wrap; justify-content: center; }
+    }
   </style>
 </head>
 <body>
@@ -244,49 +252,26 @@
   We don’t just assemble wires — we connect technology with emotion, engineering with empathy, and innovation with integrity.</p>
 </section>
 
-<section id="founders">
-  <h2>👩‍🔧 Our Founders — The Strength Behind the Circuit</h2>
-  <p>Each founding member of COTSWI brings a unique energy to the organization:<br><br>
-  Electrical Engineers bring deep technical knowledge of circuits, current paths, insulation systems, and voltage management — ensuring that every harness we produce meets the highest standards of safety and functionality.<br><br>
-  Software Engineers contribute automation, traceability systems, and process optimization through digital tools and smart manufacturing concepts — turning traditional harness assembly into an intelligent, data-driven operation.<br><br>
-  The Sociology Graduate adds the human dimension — understanding people, nurturing workplace culture, and building bridges between technology and emotion. Her insights help shape a company culture built on empathy, ethics, and empowerment.<br><br>
-  Together, they form a perfect balance of brains, hearts, and hands — the essence of COTSWI.</p>
-</section>
-
 <section id="sustainability">
   <h2>💚 Sustainability — Empowering People, Preserving the Planet</h2>
   <img src="assets/sustainability.jpg" alt="Sustainability" class="img-full">
   <p>At COTSWI, sustainability is more than an environmental commitment — it’s a way of life. We focus on creating long-term value by caring for our people, our community, and our environment.<br><br>
-  Our sustainability initiatives include:<br><br>
-  <strong>Local Empowerment:</strong> Training and employing sons and daughters of local workers, helping rural youth realize corporate dreams.<br>
-  <strong>Eco-Conscious Manufacturing:</strong> Minimizing material waste, optimizing power usage, and following responsible recycling practices.<br>
-  <strong>Inclusive Growth:</strong> Encouraging more women in engineering and technical roles, ensuring diversity at every level.<br><br>
+  <strong>Local Empowerment:</strong> Training and employing sons and daughters of local workers.<br>
+  <strong>Eco-Conscious Manufacturing:</strong> Minimizing waste and optimizing power usage.<br>
+  <strong>Inclusive Growth:</strong> Encouraging more women in engineering and leadership.<br><br>
   We believe that every responsible action — no matter how small — contributes to a more sustainable and compassionate world.</p>
 </section>
 
 <section id="plan">
   <h2>🚀 Our 5-Year Vision Plan — “Wired for the Future”</h2>
-  <img src="assets/vision-plan.jpg" alt="5-Year Vision" class="img-full">
-  <p>COTSWI’s roadmap for the next five years is guided by a blend of ambition and authenticity. We are focused on growth that is both technologically advanced and socially grounded.<br><br>
-  Our strategic goals include:<br>
-  Becoming a recognized Tier-1 supplier in wiring harness and EMS assemblies for Indian and global markets.<br>
-  Implementing AI-powered inspection systems for real-time quality validation and digital traceability.<br>
-  Expanding our facility to increase capacity and automation while maintaining our handmade precision culture.<br>
-  Establishing a Skill Development Center for rural women and youth to promote technical education and employment.<br>
-  Maintaining 100% transparency in cost, quality, and delivery — our unshakable foundation of trust.<br><br>
-  We are not just building a company; we are building a movement — one that empowers, connects, and inspires.</p>
-</section>
-
-<section id="belief">
-  <h2>💬 Our Belief</h2>
-  <p>“We treat our employees like family — and the same care flows into every harness we build.”<br><br>
-  “We are more than a company; we are a story of women who dared to dream and connected their hearts through wires.”</p>
-</section>
-
-<section id="promise">
-  <h2>💡 Our Core Promise</h2>
-  <p>Every harness we produce carries the mark of trust, care, and engineering excellence. We are committed to delivering quality with transparency, ensuring that our relationships with customers, employees, and partners remain strong, open, and built on integrity.<br><br>
-  Through this philosophy, COTSWI continues to redefine the wiring harness industry — connecting not just wires, but people, possibilities, and dreams.</p>
+  <img src="assets/vision-plan.jpg" alt="Vision Plan" class="img-full">
+  <p>COTSWI’s roadmap for the next five years focuses on both technological excellence and social impact.<br><br>
+  <strong>Goals:</strong><br>
+  • Become a recognized Tier-1 supplier globally.<br>
+  • Implement AI-powered inspection and traceability systems.<br>
+  • Expand facilities with automation and skill development programs.<br>
+  • Maintain 100% transparency in cost, quality, and delivery.<br><br>
+  We’re not just building a company; we’re building a movement that connects hearts, hands, and innovation.</p>
 </section>
 
 <section id="contact">
@@ -309,9 +294,8 @@
 <!-- Supabase Integration -->
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-
   const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // 🔐 Replace with your actual anon key
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A"; // Replace with your Supabase anon key
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   document.getElementById("contact-form").addEventListener("submit", async (e) => {
@@ -323,22 +307,21 @@
     const message = document.getElementById("message").value.trim();
 
     const { error } = await supabase.from("contacts").insert([{ name, company, email, phone, message }]);
-
     if (error) alert("❌ Failed: " + error.message);
     else {
-      alert("✅ Thank you for your message! We will get back to you shortly.");
+      alert("✅ Thank you! We'll get back to you shortly.");
       e.target.reset();
     }
   });
 
-  // Section fade animation
+  // Fade-in on scroll
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+      if (entry.isIntersecting) entry.target.classList.add("visible");
     });
   }, { threshold: 0.2 });
 
-  document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+  document.querySelectorAll("section").forEach(sec => observer.observe(sec));
 </script>
 
 </body>

@@ -26,11 +26,12 @@
     body {
       color: var(--text);
       background-color: white;
-      line-height: 1.7;
+      line-height: 1.6;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
 
+    /* --- Header & Navbar --- */
     header {
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -43,7 +44,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 8%;
+      padding: 10px 8%;
+      position: relative;
     }
 
     nav img {
@@ -54,8 +56,6 @@
       display: flex;
       list-style: none;
       gap: 25px;
-      flex-wrap: wrap;
-      justify-content: center;
     }
 
     .nav-links a {
@@ -69,12 +69,68 @@
       color: var(--accent);
     }
 
+    /* --- Mobile Hamburger Menu --- */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      nav img {
+        height: 42px;
+      }
+
+      nav {
+        padding: 10px 6%;
+      }
+    }
+
+    /* --- Hero Section --- */
     .hero {
       position: relative;
       color: white;
       text-align: center;
-      padding: 150px 8%;
+      min-height: 100vh;
       background: linear-gradient(135deg, #0b5394, #174ea6, #ff7a18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8%;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.45);
     }
 
     .hero h1 {
@@ -88,7 +144,6 @@
       max-width: 800px;
       margin: 0 auto 30px;
       font-size: 1.1rem;
-      opacity: 0.95;
       text-shadow: 0 3px 6px rgba(0,0,0,0.5);
     }
 
@@ -107,9 +162,9 @@
       color: white;
     }
 
+    /* --- Sections --- */
     section {
       padding: 70px 10%;
-      text-align: center;
       opacity: 0;
       transform: translateY(40px);
       transition: all 1s ease-out;
@@ -127,47 +182,38 @@
     h2 {
       color: var(--accent);
       margin-bottom: 20px;
+      text-align: center;
       font-size: 2rem;
-      font-weight: 700;
+      position: relative;
     }
 
-    .divider {
-      width: 80px;
-      height: 4px;
-      background: var(--navy);
-      margin: 0 auto 25px;
+    h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      margin: 10px auto;
       border-radius: 2px;
     }
 
     p {
       max-width: 900px;
-      margin: 0 auto 20px;
+      margin: 0 auto;
+      text-align: center;
       font-size: 1.05rem;
-      color: var(--text);
     }
 
     .img-full {
       display: block;
       width: 75%;
-      max-width: 1000px;
-      margin: 20px auto;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-    }
-
-    ul {
-      text-align: left;
       max-width: 900px;
-      margin: 20px auto;
-      list-style: disc;
-      padding-left: 40px;
+      margin: 25px auto;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
 
-    li {
-      margin-bottom: 10px;
-      font-size: 1.05rem;
-    }
-
+    /* --- Contact Form --- */
     form {
       display: flex;
       flex-direction: column;
@@ -204,7 +250,6 @@
       color: white;
       padding: 30px 8%;
       text-align: center;
-      line-height: 1.6;
     }
 
     footer a {
@@ -216,17 +261,35 @@
       text-decoration: underline;
     }
 
+    /* --- Responsive --- */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
-      .hero p { font-size: 1rem; }
-      .img-full { width: 90%; }
-      section { padding: 50px 6%; }
+      .hero {
+        min-height: 80vh;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .img-full {
+        width: 90%;
+      }
+      section {
+        padding: 60px 6%;
+      }
     }
 
     @media (max-width: 480px) {
-      h2 { font-size: 1.6rem; }
-      p, li { font-size: 0.95rem; }
-      .hero { padding: 100px 5%; }
+      .hero {
+        min-height: 75vh;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .hero p {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
@@ -236,7 +299,8 @@
 <header>
   <nav>
     <img src="assets/logo.png" alt="COTSWI Logo" />
-    <ul class="nav-links">
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#founders">Founders</a></li>
@@ -256,61 +320,37 @@
 
 <section id="about">
   <h2>🏭 About COTSWI Technologies</h2>
-  <div class="divider"></div>
   <img src="assets/about-ai.jpg.png" alt="About COTSWI" class="img-full">
-  <p>COTSWI Technologies was founded by a group of passionate women — Electrical Engineers, Software Engineers, and a Sociology Graduate — united by a shared dream: to create a world-class wiring harness assembly setup that blends technology, empathy, and integrity.</p>
-  <p>What began as a small initiative, funded by their personal savings, has evolved into a symbol of innovation, empowerment, and transformation. From a humble village in Tamil Nadu, these women envisioned a company capable of competing globally while staying deeply rooted in human values, emotional intelligence, and local pride.</p>
-</section>
-
-<section id="founders">
-  <h2>👩‍🔧 Our Founders — The Strength Behind the Circuit</h2>
-  <div class="divider"></div>
-  <p>Each founding member of COTSWI brings a unique energy to the organization:</p>
-  <p><strong>Electrical Engineers</strong> bring deep technical knowledge of circuits, current paths, insulation systems, and voltage management — ensuring that every harness we produce meets the highest standards of safety and functionality.</p>
-  <p><strong>Software Engineers</strong> contribute automation, traceability systems, and process optimization through digital tools and smart manufacturing concepts — turning traditional harness assembly into an intelligent, data-driven operation.</p>
-  <p><strong>The Sociology Graduate</strong> adds the human dimension — understanding people, nurturing workplace culture, and building bridges between technology and emotion. Her insights help shape a company culture built on empathy, ethics, and empowerment.</p>
-  <p>Together, they form a perfect balance of brains, hearts, and hands — the essence of COTSWI.</p>
+  <p>COTSWI Technologies was founded by a group of passionate women — Electrical Engineers, Software Engineers, and a Sociology Graduate — united by a shared dream to create a world-class wiring harness assembly setup that blends technology, empathy, and integrity.</p>
 </section>
 
 <section id="wiring">
   <h2>⚙️ Our Core Expertise — Wiring Harness Solutions</h2>
-  <div class="divider"></div>
   <img src="assets/wiring-harness.jpg.png" alt="Wiring Harness" class="img-full">
-  <p>At the heart of COTSWI Technologies lies our dedication to precision wiring harness manufacturing. We design, develop, and produce wiring harnesses that serve as the nervous system of modern vehicles and industrial systems — carrying power, signals, and reliability across every connection.</p>
-  <p>Our harnesses are used in automotive, industrial automation, renewable energy, and consumer electronics applications. Each product we build undergoes meticulous testing, traceability, and process control, ensuring safety, consistency, and longevity.</p>
-  <p>We don’t just assemble wires — we connect technology with emotion, engineering with empathy, and innovation with integrity.</p>
+  <p>We design, develop, and produce wiring harnesses that serve as the nervous system of modern vehicles and industrial systems — carrying power, signals, and reliability across every connection.</p>
 </section>
 
 <section id="sustainability">
   <h2>💚 Sustainability — Empowering People, Preserving the Planet</h2>
-  <div class="divider"></div>
   <img src="assets/sustainability.jpg.png" alt="Sustainability" class="img-full">
-  <p>At COTSWI, sustainability is more than an environmental commitment — it’s a way of life. We focus on creating long-term value by caring for our people, our community, and our environment.</p>
-  <p><strong>Local Empowerment:</strong> Training and employing sons and daughters of local workers, helping rural youth realize corporate dreams.</p>
-  <p><strong>Eco-Conscious Manufacturing:</strong> Minimizing material waste, optimizing power usage, and following responsible recycling practices.</p>
-  <p><strong>Inclusive Growth:</strong> Encouraging more women in engineering and technical roles, ensuring diversity at every level.</p>
-  <p>We believe that every responsible action — no matter how small — contributes to a more sustainable and compassionate world.</p>
+  <p>We focus on creating long-term value by caring for our people, our community, and our environment through responsible manufacturing, local empowerment, and inclusive growth.</p>
 </section>
 
 <section id="plan">
   <h2>🚀 Our 5-Year Vision Plan — “Wired for the Future”</h2>
-  <div class="divider"></div>
   <img src="assets/vision-plan.jpg.png" alt="Vision Plan" class="img-full">
   <p>COTSWI’s roadmap for the next five years is guided by a blend of ambition and authenticity. We are focused on growth that is both technologically advanced and socially grounded.</p>
-  <h3 style="color: var(--navy); margin-top: 20px;">Our strategic goals include:</h3>
-  <ul>
+  <ul style="max-width: 900px; margin: 20px auto; line-height: 1.8;">
     <li>Becoming a recognized Tier-1 supplier in wiring harness and EMS assemblies for Indian and global markets.</li>
     <li>Implementing AI-powered inspection systems for real-time quality validation and digital traceability.</li>
-    <li>Expanding our facility to increase capacity and automation while maintaining our handmade precision culture.</li>
+    <li>Expanding our facility to increase capacity and automation while maintaining handmade precision culture.</li>
     <li>Establishing a Skill Development Center for rural women and youth to promote technical education and employment.</li>
     <li>Maintaining 100% transparency in cost, quality, and delivery — our unshakable foundation of trust.</li>
   </ul>
-  <p>We are not just building a company; we are building a movement — one that empowers, connects, and inspires.</p>
 </section>
 
 <section id="contact">
-  <h2>Contact / Request a Quote</h2>
-  <div class="divider"></div>
+  <h2>📞 Contact / Request a Quote</h2>
   <form id="contact-form">
     <input type="text" id="name" placeholder="Your Name" required />
     <input type="text" id="company" placeholder="Your Company (optional)" />
@@ -326,11 +366,16 @@
   <p><a href="mailto:sales@cotswi.com">sales@cotswi.com</a></p>
 </footer>
 
+<!-- JS for Menu + Supabase Integration -->
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
   const supabaseUrl = "https://pnywwscdvkcysjyudlhp.supabase.co";
   const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXd3c2NkdmtjeXNqeXVkbGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDAzODUsImV4cCI6MjA3NDk3NjM4NX0.5dkY8ePqiXzd6_Y17qGI9raLLUCsF9_BWJAmAZb-I2A";
   const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const toggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('active'));
 
   document.getElementById("contact-form").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -341,43 +386,19 @@
       phone: document.getElementById("phone").value.trim(),
       message: document.getElementById("message").value.trim(),
     };
-
     alert("🙏 Thank you for contacting COTSWI! Your message is being processed...");
-
-    let dbSuccess = false, mailSuccess = false;
     try {
       const { error } = await supabase.from("contacts").insert([data]);
       if (error) throw error;
-      dbSuccess = true;
+      alert("✅ Message saved successfully!");
+      e.target.reset();
     } catch (err) {
-      console.error("Database error:", err.message);
+      alert("❌ Failed to save: " + err.message);
     }
-
-    try {
-      const res = await fetch("https://pnywwscdvkcysjyudlhp.supabase.co/functions/v1/send-mail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (res.ok) mailSuccess = true;
-    } catch (err) {
-      console.error("Email send error:", err.message);
-    }
-
-    if (dbSuccess && mailSuccess)
-      alert("✅ Your message has been saved and emailed successfully!");
-    else if (dbSuccess)
-      alert("✅ Message saved, but email failed.");
-    else if (mailSuccess)
-      alert("✅ Email sent, but database save failed.");
-    else
-      alert("❌ Both operations failed. Please try again later.");
-
-    e.target.reset();
   });
 
-  const observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add("visible")),
+  const observer = new IntersectionObserver((entries) =>
+    entries.forEach(e => e.isIntersecting && e.target.classList.add("visible")),
     { threshold: 0.2 }
   );
   document.querySelectorAll("section").forEach(sec => observer.observe(sec));
